@@ -22,17 +22,17 @@ La description de la classe `Block` fournit la liste des `id` de blocs disponibl
 ### Structure de l'API
 
 * `minecraft.py`
-  * Classe `Minecraft`: classe principale pour se connecter et interagir avec le jeu
-    * Classe `player`: obtenir et changer la position et les réglages du joueur
-    * Classe `entity`: obtenir et changer la position et les réglages des entités (ou joueurs)
-    * Classe `camera`: changer l'angle et la position de la caméra
-    * Classe `events`:  obtenir les événements qui se sont produits dans la partie
+  * [Classe `Minecraft`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-minecraft): classe principale pour se connecter et interagir avec le jeu
+    * [Classe `player`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-minecraftplayer): obtenir et changer la position et les réglages du joueur
+    * [Classe `entity`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-minecraftentity): obtenir et changer la position et les réglages des entités (ou joueurs)
+    * [Classe `camera`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-minecraftcamera): changer l'angle et la position de la caméra
+    * [Classe `events`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-minecraftevents):  obtenir les événements qui se sont produits dans la partie
 * `block.py`
-  * Classe `Block`: définition d'un bloc, en particulier de son type
+  * [Classe `Block`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-block): définition d'un bloc, en particulier de son type
 * `event.py`
-  * Classe `BlockEvent`: définition d'un événement de bloc, en particulier quel événement, quel bloc et quel joueur
+  * [Classe `BlockEvent`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-blockevent): définition d'un événement de bloc, en particulier quel événement, quel bloc et quel joueur
 * `vec3.py`
-  * Classe `Vec3`: classe générale pour la gestion d'un vecteur tridimensionnel (c.à.d. x, y, z)
+  * [Classe `Vec3`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-vec3): classe générale pour la gestion d'un vecteur tridimensionnel (c.à.d. x, y, z)
 * `connection.py`: module interne utilisé par l'API
 * `util.py`: module interne utilisé par l'API
 
