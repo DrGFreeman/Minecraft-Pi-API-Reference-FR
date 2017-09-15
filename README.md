@@ -42,6 +42,7 @@ La description de la classe `Block` fournit la liste des `id` de blocs disponibl
 
 #### `.create(address = "localhost", port = 4711)`
 Crée une connection avec Minecraft (adresse, port) => objet `Minecraft`.
+
 ```Python
 # Utiliser l'adresse et le port par défaut
 mc = minecraft.Minecraft.create()
@@ -262,7 +263,7 @@ mc.camera.setFollow(idEntite)
 ```
 
 #### `.setPos(x, y, z)`
-Définit la position de la caméra aux coordonnées (x, y, z)
+Définit la position de la caméra aux coordonnées (x, y, z).
 
 ```Python
 # Régler la position de la caméra à (0, 0, 0)
@@ -271,13 +272,329 @@ mc.camera.setPos(0, 0, 0)
 
 ### Classe `Minecraft.events`
 
-Cette classe permet de récupérer la liste des événements qui se sont produits dans la partie et leurs données associées.
+Cette classe permet de récupérer la liste des événements qui se sont produits dans la partie.
+
+#### `.pollBlockHits()`
+Retourne la liste des blocs touchés par l'épée => [objet `BlockEvent`].
+
+```Python
+# Obtenir la liste des blocs touchés depuis le dernier appel à la fonctions
+eventementsBloc = mc.events.pollBlockHits()
+for evenement in eventementsBloc:
+  print(evenement)
+```
+
+#### `.clearAll()`
+Supprime tous les événements passés.
+
+```Python
+# Supprimer tous les événements passés
+mc.events.clearAll()
+```
 
 ### Classe `Block`
 
+La définition d'un bloc dans Minecraft. Utilisée pour décrire le type d'un bloc et, si applicable, sa donnée (ou sous-type). Cette classe contient aussi des constantes pour la définition des `id` correspondant à chaque type de bloc, par exemple `Block.AIR.id` et égal à `0`.
+
+#### `Block(id, *data)`
+Obtiens un objet `Block` => objet `Block`.
+
+```Python
+# Créer un objet Block d'un type spécifique `2` (GRASS)
+objBloc = block.Block(2)
+
+# Créer un objet Block d'un type spécifique '17' (WOOD)
+# avec une donnée '1' (SPRUCE)
+objBloc = block.Block(17, 1)
+```
+
+#### `.id`
+Constantes correspondant aux différents types de blocs => entier:id.
+
+```
+AIR                 = 0
+STONE               = 1
+GRASS               = 2
+DIRT                = 3
+COBBLESTONE         = 4
+WOOD_PLANKS         = 5
+SAPLING             = 6
+BEDROCK             = 7
+WATER_FLOWING       = 8
+WATER               = 8
+WATER_STATIONARY    = 9
+LAVA_FLOWING        = 10
+LAVA                = 10
+LAVA_STATIONARY     = 11
+SAND                = 12
+GRAVEL              = 13
+GOLD_ORE            = 14
+IRON_ORE            = 15
+COAL_ORE            = 16
+WOOD                = 17
+LEAVES              = 18
+GLASS               = 20
+LAPIS_LAZULI_ORE    = 21
+LAPIS_LAZULI_BLOCK  = 22
+SANDSTONE           = 24
+BED                 = 26
+COBWEB              = 30
+GRASS_TALL          = 31
+WOOL                = 35
+FLOWER_YELLOW       = 37
+FLOWER_CYAN         = 38
+MUSHROOM_BROWN      = 39
+MUSHROOM_RED        = 40
+GOLD_BLOCK          = 41
+IRON_BLOCK          = 42
+STONE_SLAB_DOUBLE   = 43
+STONE_SLAB          = 44
+BRICK_BLOCK         = 45
+TNT                 = 46
+BOOKSHELF           = 47
+MOSS_STONE          = 48
+OBSIDIAN            = 49
+TORCH               = 50
+FIRE                = 51
+STAIRS_WOOD         = 53
+CHEST               = 54
+DIAMOND_ORE         = 56
+DIAMOND_BLOCK       = 57
+CRAFTING_TABLE      = 58
+FARMLAND            = 60
+FURNACE_INACTIVE    = 61
+FURNACE_ACTIVE      = 62
+DOOR_WOOD           = 64
+LADDER              = 65
+STAIRS_COBBLESTONE  = 67
+DOOR_IRON           = 71
+REDSTONE_ORE        = 73
+SNOW                = 78
+ICE                 = 79
+SNOW_BLOCK          = 80
+CACTUS              = 81
+CLAY                = 82
+SUGAR_CANE          = 83
+FENCE               = 85
+GLOWSTONE_BLOCK     = 89
+BEDROCK_INVISIBLE   = 95
+STONE_BRICK         = 98
+GLASS_PANE          = 102
+MELON               = 103
+FENCE_GATE          = 107
+GLOWING_OBSIDIAN    = 246
+NETHER_REACTOR_CORE = 247
+```
+
+#### `.data`
+La donnée (ou sous-type) d'un bloc => entier:data.
+
+Données applicables à différents types de blocs:
+
+* __`WOOL`__
+```
+0: White
+1: Orange
+2: Magenta
+3: Light Blue
+4: Yellow
+5: Lime
+6: Pink
+7: Grey
+8: Light grey
+9: Cyan
+10: Purple
+11: Blue
+12: Brown
+13: Green
+14: Red
+15:Black
+```
+
+* __`WOOD`__
+```
+0: Oak
+1: Spruce
+2: Birch
+```
+
+* __`SAPLING`__
+```
+0: Oak
+1: Spruce
+2: Birch
+```
+
+* __`GRASS_TALL`__
+```
+0: Shrub
+1: Grass
+2: Fern
+```
+
+* __`TORCH`__
+```
+1: Pointing east
+2: Pointing west
+3: Pointing south
+4: Pointing north
+5: Facing up
+```
+
+* __`STONE_BRICK`__
+```
+0: Stone brick
+1: Mossy stone brick
+2: Cracked stone brick
+3: Chiseled stone brick
+```
+
+* __`STONE_SLAB / STONE_SLAB_DOUBLE`__
+```
+0: Stone
+1: Sandstone
+2: Wooden
+3: Cobblestone
+4: Brick
+5: Stone Brick
+```
+
+* __`TNT`__
+```
+0: Inactif
+1: Prêt à exploser
+```
+
+* __`LEAVES`__
+```
+1: Oak leaves
+2: Spruce leaves
+3: Birch leaves
+```
+
+* __`SANDSTONE`__
+```
+0: Sandstone
+1: Chiseled sandstone
+2: Smooth sandstone
+```
+
+* __`STAIRS_[COBBLESTONE, WOOD]`__
+```
+0: Ascending east
+1: Ascending west
+2: Ascending south
+3: Ascending north
+4: Ascending east (upside down)
+5: Ascending west (upside down)
+6: Ascending south (upside down)
+7: Ascending north (upside down)
+```
+
+* __`LADDERS, CHESTS, FURNACES, FENCE_GATE`__
+```
+2: Facing north
+3: Facing south
+4: Facing west
+5: Facing east
+```
+
+* __`[WATER, LAVA]_STATIONARY`__
+```
+0-7: Le niveau de l'eau ou lave, 0 étant le plus haut, 7 le plus bas.
+```
+
+* __`NETHER_REACTOR_CORE`__
+```
+0: Inutilisé
+1: Actif
+2: Arrêté / utilisé au complet
+```
+
 ### Classe `BlockEvent`
 
+Classe définissant un "événement bloc" dans Minecraft, utilisée pour décrire un événement affectant un bloc. Ce type d'objet est retourné par la méthode `Minecraft.events.pollBlockHits()`.
+
+```Python
+# Obtenir la liste des objets événement bloc
+evtsBloc = mc.events.pollBlockHits()
+# et boucle sur chacun de objets de la liste
+for evBloc in evtsBloc:
+  ...
+```
+
+#### `.type`
+Le type de `BlockEvent` => entier:type. Il n'y a qu'un seul type implémenté: `BlockEvent.HIT`
+
+```Python
+# Obtenir le type de l'événement bloc
+typeEvenementBloc = evBloc.type
+```
+
+Types de `BlockEvent`:
+```
+0: BlockEvent.HIT
+```
+
+#### `.pos`
+La position du bloc où l'événement s'est produit, c.à.d. le bloc qui a été touché => objet `Vec3`.
+
+```Python
+# Obtenir la position du bloc touché dans un objet Vec3
+posEvBloc = evBloc.pos
+
+# Obtenir les coordonnées de la position du bloc touché
+x, y, z = evBloc.pos
+```
+
+#### `.face`
+La face du bloc où l'événement s'est produit => entier:face.
+
+```Python
+# Obtenir la face du bloc qui a été touchée
+faceEvBloc = evBloc.face
+```
+
+#### `.entityId`
+L'entité du joueur ayant touché le bloc => entier:entityId.
+
+```Python
+# Obtenir l'id de l'entité du joueur ayant touché le bloc
+idJoueurEvBloc = evBloc.entityId
+```
+
 ### Classe `Vec3`
+
+Classe définissant un vecteur tridimensionnel dans Minecraft, c'est à dire un jeux de trois coordonnées `x`, `y` et `z` où `x` et `z` sont les coordonnées dans le plan horizontal et `y` est la coordonnée verticale.
+
+```Python
+# Obtenir un objet Vec3 pour le point aux coordonnées (0, 0, 0)
+position = vecVec(0, 0, 0)
+```
+
+#### `.x`
+Coordonnée `x` du vecteur => nombre décimal.
+
+```Python
+# Obtenir la coordonnées x de l'objet Vec3 position
+x = position.x
+```
+
+#### `.y`
+Coordonnée `y` du vecteur => nombre décimal.
+
+```Python
+# Obtenir la coordonnées y de l'objet Vec3 position
+y = position.y
+```
+
+#### `.z`
+Coordonnée `z` du vecteur => nombre décimal.
+
+```Pzthon
+# Obtenir la coordonnées z de l'objet Vec3 position
+z = position.z
+```
 
 ## Remerciements
 
