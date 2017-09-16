@@ -41,7 +41,7 @@ La description de la classe `Block` fournit la liste des `id` de blocs disponibl
 "La classe principale pour interagir avec une instance de Minecraft Pi". Inclus les fonctions pour créer une connection, modifier les joueurs et blocs et capturer les événements.
 
 #### `.create(address = "localhost", port = 4711)`
-Crée une connection avec Minecraft (adresse, port) => objet `Minecraft`.
+Crée une connection avec Minecraft (adresse, port) => objet [`Minecraft`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-minecraft).
 
 ```Python
 # Utiliser l'adresse et le port par défaut
@@ -60,7 +60,7 @@ typeBloc = mc.getBlock(0, 0, 0)
 ```
 
 #### `.getBlockWithData(x, y, z)`
-Obtient le type du bloc avec données à la position (x, y, z) => objet `Block`.
+Obtient le type du bloc avec données à la position (x, y, z) => objet [`Block`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-block).
 
 ```Python
 # Obtenir un objet bloc pour le bloc à (0, 0, 0)
@@ -96,7 +96,7 @@ Obtient la hauteur du monde à la position (x, z) => entier.
 y = mc.getHeight(0, 0)
 ```
 
-#### `getPlayerEntityIds()`
+#### `.getPlayerEntityIds()`
 Obtient une liste des id des entités des joueurs connectés => [entier:id]
 
 ```Python
@@ -110,7 +110,7 @@ for idEntite in idEntites:
 Sauvegarde un "checkpoint" qui peut être utilisé pour restaurer le monde.
 
 #### `.restoreCheckpoint()`
-Restaure le monde à sa condition au moment de la sauvegarde du checkpoint avec `.saveCheckpoint()`.
+Restaure le monde à sa condition au moment de la sauvegarde du checkpoint avec [`.saveCheckpoint()`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#savecheckpoint).
 
 #### `.postToChat(message)`
 Affiche un message dans le "chat" du jeu.
@@ -136,7 +136,7 @@ mc.setting('nametags_visible', False)
 Classe qui permet d'interagir avec le joueur, pour obtenir et régler sa position.
 
 #### `.getPos()`
-Obtient la position du joueur dans le monde => objet `Vec3` (nombres décimaux).  
+Obtient la position du joueur dans le monde => objet [`Vec3`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-vec3) (nombres décimaux).  
 Si le joueur est au milieu d'un bloc, x.5 est retourné.
 
 ```Python
@@ -157,7 +157,7 @@ mc.player.setPos(0.5, 1, 10.1)
 ```
 
 #### `.getTilePos()`
-Obtient la position de la "tuile" ou bloc sur lequel le joueur se tient => objet `Vec3`.
+Obtient la position de la "tuile" ou bloc sur lequel le joueur se tient => objet [`Vec3`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-vec3).
 
 ```Python
 # Obtenir la position du bloc sur lequel le joueur se tient
@@ -182,7 +182,7 @@ mc.player.setting('autojump', True)
 
 ### Classe `Minecraft.entity`
 
-Les méthodes de la classe `Minecraft.entity` sont utilisées en conjonction avec la méthode `.getPlayerEntityIds()` pour interagir avec les entités (ou les joueurs) dans une partie. Les méthodes de cette classe sont utiles pour les parties multi-joueurs.
+Les méthodes de la classe `Minecraft.entity` sont utilisées en conjonction avec la méthode [`.getPlayerEntityIds()`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#getplayerentityids) pour interagir avec les entités (ou les joueurs) dans une partie. Les méthodes de cette classe sont utiles pour les parties multi-joueurs.
 
 ```Python
 # Obtenir l'id des entités des joueurs connectés à la partie
@@ -193,7 +193,7 @@ idEntite2 = idEntites[1]
 ```
 
 #### `.getPos(entityId)`
-Obtient la position d'une entité dans le monde => objet `Vec3` (nombres décimaux).  
+Obtient la position d'une entité dans le monde => objet [`Vec3`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-vec3) (nombres décimaux).  
 Si l'entité' est au milieu d'un bloc, x.5 est retourné.
 
 ```Python
@@ -214,7 +214,7 @@ mc.entity.setPos(idEntite, 0.5, 1, 10.1)
 ```
 
 #### `.getTilePos(entityId)`
-Obtient la position de la "tuile" ou bloc sur lequel l'entité se tient => objet `Vec3`.
+Obtient la position de la "tuile" ou bloc sur lequel l'entité se tient => objet [`Vec3`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-vec3).
 
 ```Python
 # Obtenir la position du bloc sur lequel l'entité 'idEntite' se tient
@@ -275,7 +275,7 @@ mc.camera.setPos(0, 0, 0)
 Cette classe permet de récupérer la liste des événements qui se sont produits dans la partie.
 
 #### `.pollBlockHits()`
-Retourne la liste des blocs touchés par l'épée => [objet `BlockEvent`].
+Retourne la liste des blocs touchés par l'épée => [objet [`BlockEvent`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-blockevent)].
 
 ```Python
 # Obtenir la liste des blocs touchés depuis le dernier appel à la fonctions
@@ -513,7 +513,7 @@ Données applicables à différents types de blocs:
 
 ### Classe `BlockEvent`
 
-Classe définissant un "événement bloc" dans Minecraft, utilisée pour décrire un événement affectant un bloc. Ce type d'objet est retourné par la méthode `Minecraft.events.pollBlockHits()`.
+Classe définissant un "événement bloc" dans Minecraft, utilisée pour décrire un événement affectant un bloc. Ce type d'objet est retourné par la méthode [`Minecraft.events.pollBlockHits()`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#pollblockhits).
 
 ```Python
 # Obtenir la liste des objets événement bloc
@@ -537,7 +537,7 @@ Types de `BlockEvent`:
 ```
 
 #### `.pos`
-La position du bloc où l'événement s'est produit, c.à.d. le bloc qui a été touché => objet `Vec3`.
+La position du bloc où l'événement s'est produit, c.à.d. le bloc qui a été touché => objet [`Vec3`](https://github.com/DrGFreeman/Minecraft-Pi-API-Reference-FR#classe-vec3).
 
 ```Python
 # Obtenir la position du bloc touché dans un objet Vec3
